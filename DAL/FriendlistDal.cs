@@ -84,10 +84,9 @@ public class FriendlistDal : IFriendlistDal
         var userModel = await _dbContext.Friend.Where(f => f.UserId == userId && f.FriendId == targetUserId).FirstOrDefaultAsync();
         var friendModel = await _dbContext.Friend.Where(f => f.UserId == targetUserId && f.FriendId == userId).FirstOrDefaultAsync();
 
-        if (userModel == null || friendModel == null)
-            return;
+        if (userModel != null) _dbContext.Remove(userModel);
+        if (friendModel != null) _dbContext.Remove(friendModel);
 
-        _dbContext.RemoveRange(userModel, friendModel);
         await _dbContext.SaveChangesAsync();
     }
 

@@ -15,17 +15,17 @@ public class FriendlistDal : IFriendlistDal
         _dbContext = dbContext;
     }
 
-    public async Task AddFriend(string userId, string friendUserId)
+    public async Task AddFriend(string userId, string targetUserId)
     {
         var userModel = new FriendModel
         {
             UserId = userId,
-            FriendId = friendUserId
+            FriendId = targetUserId
         };
 
         var friendModel = new FriendModel
         {
-            UserId = friendUserId,
+            UserId = targetUserId,
             FriendId = userId
         };
 
@@ -33,11 +33,11 @@ public class FriendlistDal : IFriendlistDal
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task AddFriendRequest(string userId, string friendUserId)
+    public async Task AddFriendRequest(string userId, string targetUserId)
     {
         var request = new RequestModel
         {
-            UserId = friendUserId,
+            UserId = targetUserId,
             SenderId = userId
         };
 
@@ -45,9 +45,9 @@ public class FriendlistDal : IFriendlistDal
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task RemoveFriendRequest(string userId, string friendUserId)
+    public async Task RemoveFriendRequest(string userId, string targetUserId)
     {
-        var request = await _dbContext.Friend.Where(f => f.UserId == userId && f.FriendId == friendUserId).FirstOrDefaultAsync();   
+        var request = await _dbContext.Friend.Where(f => f.UserId == userId && f.FriendId == targetUserId).FirstOrDefaultAsync();   
 
         if (request == null)
             return;
@@ -56,9 +56,9 @@ public class FriendlistDal : IFriendlistDal
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<bool> HasFriendRequest(string userId, string friendUserId)
+    public async Task<bool> HasFriendRequest(string userId, string targetUserId)
     {
-        var request = await _dbContext.Request.Where(f => f.UserId == userId && f.SenderId == friendUserId).FirstOrDefaultAsync();
+        var request = await _dbContext.Request.Where(f => f.UserId == userId && f.SenderId == targetUserId).FirstOrDefaultAsync();
 
         return request != null;
     }
@@ -79,10 +79,10 @@ public class FriendlistDal : IFriendlistDal
             .ToListAsync();
     }
 
-    public async Task RemoveFriend(string userId, string friendUserId)
+    public async Task RemoveFriend(string userId, string targetUserId)
     {
-        var userModel = await _dbContext.Friend.Where(f => f.UserId == userId && f.FriendId == friendUserId).FirstOrDefaultAsync();
-        var friendModel = await _dbContext.Friend.Where(f => f.UserId == friendUserId && f.FriendId == userId).FirstOrDefaultAsync();
+        var userModel = await _dbContext.Friend.Where(f => f.UserId == userId && f.FriendId == targetUserId).FirstOrDefaultAsync();
+        var friendModel = await _dbContext.Friend.Where(f => f.UserId == targetUserId && f.FriendId == userId).FirstOrDefaultAsync();
 
         if (userModel == null || friendModel == null)
             return;
@@ -99,9 +99,9 @@ public class FriendlistDal : IFriendlistDal
             .ToListAsync();
     }
 
-    public async Task<bool> UsersAreFriends(string userId, string friendUserId)
+    public async Task<bool> UsersAreFriends(string userId, string targetUserId)
     {
-        var request = await _dbContext.Friend.Where(f => f.UserId == userId && f.FriendId == friendUserId).FirstOrDefaultAsync();
+        var request = await _dbContext.Friend.Where(f => f.UserId == userId && f.FriendId == targetUserId).FirstOrDefaultAsync();
 
         return request != null;
     }

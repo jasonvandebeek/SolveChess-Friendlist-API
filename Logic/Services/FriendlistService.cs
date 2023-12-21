@@ -18,9 +18,6 @@ public class FriendlistService : IFriendlistService
 
     public async Task AcceptFriendRequest(string userId, string friendUserId)
     {
-        if (!await _friendlistDal.HasFriendRequest(userId, friendUserId))
-            return;
-
         await _friendlistDal.RemoveFriendRequest(userId, friendUserId);
         await _friendlistDal.AddFriend(userId, friendUserId);
     }
@@ -48,9 +45,6 @@ public class FriendlistService : IFriendlistService
 
     public async Task DenyFriendRequest(string userId, string friendUserId)
     {
-        if (!await _friendlistDal.HasFriendRequest(userId, friendUserId))
-            return;
-
         await _friendlistDal.RemoveFriendRequest(userId, friendUserId);
     }
 
@@ -71,17 +65,11 @@ public class FriendlistService : IFriendlistService
 
     public async Task RemoveFriend(string userId, string friendUserId)
     {
-        if (!await _friendlistDal.UsersAreFriends(userId, friendUserId))
-            return;
-
         await _friendlistDal.RemoveFriend(userId, friendUserId);
     }
 
     public async Task RevokeFriendRequest(string userId, string friendUserId)
     {
-        if (!await _friendlistDal.HasFriendRequest(friendUserId, userId))
-            return;
-
         await _friendlistDal.RemoveFriendRequest(friendUserId, userId);
     }
 }

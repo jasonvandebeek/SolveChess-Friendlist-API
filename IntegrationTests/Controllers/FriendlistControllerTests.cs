@@ -59,7 +59,7 @@ public class FriendlistControllerTests
             SenderId = "234"
         };
 
-        _dbContext.Add(requestModel);
+        _dbContext.Request.Add(requestModel);
         await _dbContext.SaveChangesAsync();
 
         //Act
@@ -96,7 +96,7 @@ public class FriendlistControllerTests
             FriendId = "234"
         };
 
-        await _dbContext.AddRangeAsync(userModel, friendModel);
+        await _dbContext.Friend.AddRangeAsync(userModel, friendModel);
         await _dbContext.SaveChangesAsync();
 
         //Act
@@ -135,7 +135,7 @@ public class FriendlistControllerTests
             SenderId = "234"
         };
 
-        _dbContext.Add(requestModel);
+        _dbContext.Request.Add(requestModel);
         await _dbContext.SaveChangesAsync();
 
         //Act
@@ -179,7 +179,7 @@ public class FriendlistControllerTests
             SenderId = "234"
         };
 
-        _dbContext.Add(requestModel);
+        _dbContext.Request.Add(requestModel);
         await _dbContext.SaveChangesAsync();
 
         //Act
@@ -223,7 +223,7 @@ public class FriendlistControllerTests
             SenderId = "234"
         };
 
-        _dbContext.Add(requestModel);
+        _dbContext.Request.Add(requestModel);
         await _dbContext.SaveChangesAsync();
 
         //Act
@@ -268,7 +268,7 @@ public class FriendlistControllerTests
             FriendId = "234"
         };
 
-        await _dbContext.AddRangeAsync(userModel, friendModel);
+        await _dbContext.Friend.AddRangeAsync(userModel, friendModel);
         await _dbContext.SaveChangesAsync();
 
         //Act
@@ -319,7 +319,7 @@ public class FriendlistControllerTests
             FriendId = "234"
         };
 
-        await _dbContext.AddRangeAsync(userModel, friendModel);
+        await _dbContext.Friend.AddRangeAsync(userModel, friendModel);
         await _dbContext.SaveChangesAsync();
 
         //Act
@@ -363,7 +363,7 @@ public class FriendlistControllerTests
             SenderId = "123"
         };
 
-        _dbContext.Add(requestModel);
+        _dbContext.Request.Add(requestModel);
         await _dbContext.SaveChangesAsync();
 
         //Act
@@ -407,7 +407,7 @@ public class FriendlistControllerTests
             SenderId = "234"
         };
 
-        _dbContext.Add(requestModel);
+        _dbContext.Request.Add(requestModel);
         await _dbContext.SaveChangesAsync();
 
         //Act

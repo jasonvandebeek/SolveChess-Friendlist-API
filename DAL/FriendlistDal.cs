@@ -29,7 +29,7 @@ public class FriendlistDal : IFriendlistDal
             FriendId = userId
         };
 
-        await _dbContext.AddRangeAsync(userModel, friendModel);
+        await _dbContext.Friend.AddRangeAsync(userModel, friendModel);
         await _dbContext.SaveChangesAsync();
     }
 
@@ -41,13 +41,13 @@ public class FriendlistDal : IFriendlistDal
             SenderId = userId
         };
 
-        _dbContext.Add(request);
+        _dbContext.Request.Add(request);
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task RemoveFriendRequest(string userId, string targetUserId)
+    public async Task RemoveFriendRequest(string userId, string senderId)
     {
-        var request = await _dbContext.Friend.Where(f => f.UserId == userId && f.FriendId == targetUserId).FirstOrDefaultAsync();   
+        var request = await _dbContext.Request.Where(f => f.UserId == userId && f.SenderId == senderId).FirstOrDefaultAsync();   
 
         if (request == null)
             return;

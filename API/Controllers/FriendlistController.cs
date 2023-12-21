@@ -18,7 +18,7 @@ public class FriendlistController : Controller
         _friendlistService = chessService;
     }
 
-    [HttpPost("request/{friendUserId}")]
+    [HttpPost("requests/{friendUserId}")]
     public async Task<IActionResult> AddFriend(string friendUserId)
     {
         var userId = GetUserIdFromCookies();
@@ -28,7 +28,7 @@ public class FriendlistController : Controller
         return Ok();
     }
 
-    [HttpPost("request/{friendUserId}/accept")]
+    [HttpPost("requests/{friendUserId}/accept")]
     public async Task<IActionResult> AcceptRequest(string friendUserId)
     {
         var userId = GetUserIdFromCookies();
@@ -38,7 +38,7 @@ public class FriendlistController : Controller
         return Ok();
     }
 
-    [HttpPost("request/{friendUserId}/deny")]
+    [HttpPost("requests/{friendUserId}/deny")]
     public async Task<IActionResult> DenyRequest(string friendUserId)
     {
         var userId = GetUserIdFromCookies();
@@ -48,7 +48,7 @@ public class FriendlistController : Controller
         return Ok();
     }
 
-    [HttpDelete("request/{friendUserId}")]
+    [HttpDelete("requests/{friendUserId}")]
     public async Task<IActionResult> RevokeRequest(string friendUserId)
     {
         var userId = GetUserIdFromCookies();

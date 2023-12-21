@@ -37,7 +37,7 @@ public class FriendlistControllerTests
         client.DefaultRequestHeaders.Add("Cookie", $"AccessToken={_jwtToken}");
 
         //Act
-        var response = await client.PostAsync("/friendlist/request/234", null);
+        var response = await client.PostAsync("/friendlist/requests/234", null);
 
         //Assert
         Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -63,7 +63,7 @@ public class FriendlistControllerTests
         await _dbContext.SaveChangesAsync();
 
         //Act
-        var response = await client.PostAsync("/friendlist/request/234", null);
+        var response = await client.PostAsync("/friendlist/requests/234", null);
 
         //Assert
         Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -100,7 +100,7 @@ public class FriendlistControllerTests
         await _dbContext.SaveChangesAsync();
 
         //Act
-        var response = await client.PostAsync("/friendlist/request/234", null);
+        var response = await client.PostAsync("/friendlist/requests/234", null);
 
         //Assert
         Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -116,7 +116,7 @@ public class FriendlistControllerTests
         var client = _factory.CreateClient();
 
         //Act
-        var response = await client.PostAsync("/friendlist/request/234", null);
+        var response = await client.PostAsync("/friendlist/requests/234", null);
 
         //Assert
         Assert.AreEqual(HttpStatusCode.Unauthorized, response.StatusCode);
@@ -139,7 +139,7 @@ public class FriendlistControllerTests
         await _dbContext.SaveChangesAsync();
 
         //Act
-        var response = await client.PostAsync("/friendlist/request/234/accept", null);
+        var response = await client.PostAsync("/friendlist/requests/234/accept", null);
 
         //Assert
         Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -160,7 +160,7 @@ public class FriendlistControllerTests
         var client = _factory.CreateClient();
 
         //Act
-        var response = await client.PostAsync("/friendlist/request/234/accept", null);
+        var response = await client.PostAsync("/friendlist/requests/234/accept", null);
 
         //Assert
         Assert.AreEqual(HttpStatusCode.Unauthorized, response.StatusCode);
@@ -183,7 +183,7 @@ public class FriendlistControllerTests
         await _dbContext.SaveChangesAsync();
 
         //Act
-        var response = await client.PostAsync("/friendlist/request/234/deny", null);
+        var response = await client.PostAsync("/friendlist/requests/234/deny", null);
 
         //Assert
         Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -204,7 +204,7 @@ public class FriendlistControllerTests
         var client = _factory.CreateClient();
 
         //Act
-        var response = await client.PostAsync("/friendlist/request/234/deny", null);
+        var response = await client.PostAsync("/friendlist/requests/234/deny", null);
 
         //Assert
         Assert.AreEqual(HttpStatusCode.Unauthorized, response.StatusCode);
@@ -227,7 +227,7 @@ public class FriendlistControllerTests
         await _dbContext.SaveChangesAsync();
 
         //Act
-        var response = await client.DeleteAsync("/friendlist/request/234");
+        var response = await client.DeleteAsync("/friendlist/requests/234");
 
         //Assert
         Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -243,7 +243,7 @@ public class FriendlistControllerTests
         var client = _factory.CreateClient();
 
         //Act
-        var response = await client.DeleteAsync("/friendlist/request/234");
+        var response = await client.DeleteAsync("/friendlist/requests/234");
 
         //Assert
         Assert.AreEqual(HttpStatusCode.Unauthorized, response.StatusCode);

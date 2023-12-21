@@ -33,12 +33,12 @@ public class FriendlistDal : IFriendlistDal
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task AddFriendRequest(string userId, string targetUserId)
+    public async Task AddFriendRequest(string userId, string senderId)
     {
         var request = new RequestModel
         {
-            UserId = targetUserId,
-            SenderId = userId
+            UserId = userId,
+            SenderId = senderId
         };
 
         _dbContext.Request.Add(request);
@@ -56,9 +56,9 @@ public class FriendlistDal : IFriendlistDal
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<bool> HasFriendRequest(string userId, string targetUserId)
+    public async Task<bool> HasFriendRequest(string userId, string senderId)
     {
-        var request = await _dbContext.Request.Where(f => f.UserId == userId && f.SenderId == targetUserId).FirstOrDefaultAsync();
+        var request = await _dbContext.Request.Where(f => f.UserId == userId && f.SenderId == senderId).FirstOrDefaultAsync();
 
         return request != null;
     }

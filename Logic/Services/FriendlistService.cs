@@ -40,7 +40,7 @@ public class FriendlistService : IFriendlistService
         if (await _friendlistDal.HasFriendRequest(friendUserId, userId))
             return;
 
-        await _friendlistDal.AddFriendRequest(userId, friendUserId);
+        await _friendlistDal.AddFriendRequest(friendUserId, userId);
     }
 
     public async Task DenyFriendRequest(string userId, string friendUserId)

@@ -31,9 +31,12 @@ builder.Services.AddScoped<HttpClient>();
 
 builder.Services.AddScoped<IFriendlistService, FriendlistService>();
 
+string origins = Environment.GetEnvironmentVariable("SolveChess_CorsUrls") ?? throw new MissingEnvVariableException("No cors urls found in .env variables!");
+string[] originArray = origins.Split(';');
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowOrigin", builder => builder.WithOrigins("https://localhost:3000", "https://solvechess.xyz")
+    options.AddPolicy("AllowOrigin", builder => builder.WithOrigins(originArray)
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowCredentials());

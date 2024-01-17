@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SolveChess.API.Exceptions;
+using SolveChess.API.Middleware;
 using SolveChess.DAL;
 using SolveChess.DAL.Models;
 using SolveChess.Logic.DAL;
@@ -87,8 +88,9 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseCors("AllowOrigin");
+app.UseExceptionHandlingMiddleware();
 
+app.UseCors("AllowOrigin");
 
 app.MapControllers();
 
